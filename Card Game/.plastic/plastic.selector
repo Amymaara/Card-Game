@@ -1,0 +1,4 @@
+repository "Card Game/Card Game@1375794690184@cloud"
+  path "/"
+    br "/main"
+    co "/main"
