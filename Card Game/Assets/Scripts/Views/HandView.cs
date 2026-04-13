@@ -54,12 +54,22 @@ public class HandView : MonoBehaviour
             float y = -Mathf.Abs(normalized) * 20f + curveHeight;
             float zRotation = -normalized * maxRotation;
 
+            rect.DOKill();
             rect.DOAnchorPos(new Vector2(x, y), duration);
             rect.DOLocalRotate(new Vector3(0f, 0f, zRotation), duration);
+            rect.DOScale(Vector3.one, duration);
 
             rect.SetSiblingIndex(i);
         }
 
         yield return new WaitForSeconds(duration);
     }
+
+    public void RefreshLayoutImmediate()
+    {
+        StopAllCoroutines();
+        StartCoroutine(UpdateCardPositions(0.15f));
+    }
+
+
 }
