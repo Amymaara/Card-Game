@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class Card 
+public class Card
 {
     public string Title => data.name;
 
@@ -19,4 +19,6 @@ public class Card
         CardCost = cardData.cardCost;
 
     }
+
+    
 }
