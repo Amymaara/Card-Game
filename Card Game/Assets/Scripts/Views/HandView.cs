@@ -1,37 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class HandView : MonoBehaviour
 {
-    [SerializeField] private SplineContainer splineContainer;
+    [SerializeField] private float spacing = 160f;
+    [SerializeField] private float curveHeight = 35f;
+    [SerializeField] private float maxRotation = 12f;
 
     private readonly List<CardView> cards = new();
 
     public IEnumerator AddCard(CardView cardView)
     {
+        RectTransform rect = cardView.GetComponent<RectTransform>();
+        rect.SetParent(transform, false);
+        rect.localScale = Vector3.one;
+
         cards.Add(cardView);
-        yield return UpdateCardPositions(0.15f);
+        yield return UpdateCardPositions(0.2f);
     }
 
     private IEnumerator UpdateCardPositions(float duration)
     {
-        if (cards.Count == 0) yield break;
-        float cardSpacing = 1f / 10f;
-        float firstCardPosition = 0.5f - (cards.Count - 1) * cardSpacing / 2;
-        Spline spline = splineContainer.Spline;
+        if (cards.Count == 0)
+            yield break;
+
+        float centerOffset = (cards.Count - 1) / 2f;
+
         for (int i = 0; i < cards.Count; i++)
         {
-            float p = firstCardPosition + i * cardSpacing;
-            Vector3 splinePosition = spline.EvaluatePosition(p);
-            Vector3 forward = spline.EvaluateTangent(p);
-            Vector3 up = spline.EvaluateUpVector(p);
-            Quaternion rotation = Quaternion.LookRotation(-up, Vector3.Cross(-up, forward).normalized);
-            cards[i].transform.DOMove(splinePosition + transform.position + 0.01f * i * Vector3.back, duration);
-            cards[i].transform.DORotate(rotation.eulerAngles, duration);
+            RectTransform rect = cards[i].GetComponent<RectTransform>();
+
+            float normalized = cards.Count == 1 ? 0f : (i - centerOffset) / centerOffset;
+            if (cards.Count == 1) normalized = 0f;
+
+            float x = (i - centerOffset) * spacing;
+            float y = -Mathf.Abs(normalized) * 20f + curveHeight;
+            float zRotation = -normalized * maxRotation;
+
+            rect.DOAnchorPos(new Vector2(x, y), duration);
+            rect.DOLocalRotate(new Vector3(0f, 0f, zRotation), duration);
+
+            rect.SetSiblingIndex(i);
         }
 
         yield return new WaitForSeconds(duration);
