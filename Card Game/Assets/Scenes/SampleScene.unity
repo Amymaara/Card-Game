@@ -837,9 +837,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3048482971267883303, guid: ad1c0d142495c2d45b7c2e8222f29387, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3124193610564740059, guid: ad1c0d142495c2d45b7c2e8222f29387, type: 3}
       propertyPath: m_SortingOrder
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942981526392217686, guid: ad1c0d142495c2d45b7c2e8222f29387, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318372393240964314, guid: ad1c0d142495c2d45b7c2e8222f29387, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711700326638634797, guid: ad1c0d142495c2d45b7c2e8222f29387, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6405502660865464845, guid: ad1c0d142495c2d45b7c2e8222f29387, type: 3}
       propertyPath: m_Name
@@ -906,6 +922,7 @@ MonoBehaviour:
   spacing: 160
   curveHeight: 35
   maxRotation: 12
+  layoutDuration: 0.15
 --- !u!1 &1249282968
 GameObject:
   m_ObjectHideFlags: 0

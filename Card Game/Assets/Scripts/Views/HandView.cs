@@ -9,6 +9,7 @@ public class HandView : MonoBehaviour
     [SerializeField] private float spacing = 160f;
     [SerializeField] private float curveHeight = 35f;
     [SerializeField] private float maxRotation = 12f;
+    [SerializeField] private float layoutDuration = 0.15f;
 
     private readonly List<CardView> cards = new();
 
@@ -19,21 +20,28 @@ public class HandView : MonoBehaviour
         rect.localScale = Vector3.one;
 
         cards.Add(cardView);
-        yield return UpdateCardPositions(0.2f);
+        yield return UpdateCardPositions(layoutDuration);
     }
 
     public CardView RemoveCard(Card card)
     {
         CardView cardView = GetCardView(card);
         if (cardView == null) return null;
+
         cards.Remove(cardView);
-        StartCoroutine(UpdateCardPositions(0.15f));
+        StartCoroutine(UpdateCardPositions(layoutDuration));
         return cardView;
     }
 
     private CardView GetCardView(Card card)
     {
-        return cards.Where(cardView => cardView.Card == card).FirstOrDefault(); 
+        return cards.FirstOrDefault(cardView => cardView.Card == card);
+    }
+
+    public void RefreshLayoutImmediate()
+    {
+        StopAllCoroutines();
+        StartCoroutine(UpdateCardPositions(0.15f));
     }
 
     private IEnumerator UpdateCardPositions(float duration)
@@ -45,7 +53,10 @@ public class HandView : MonoBehaviour
 
         for (int i = 0; i < cards.Count; i++)
         {
-            RectTransform rect = cards[i].GetComponent<RectTransform>();
+            CardView card = cards[i];
+            if (card == null) continue;
+
+            RectTransform rect = card.GetComponent<RectTransform>();
 
             float normalized = cards.Count == 1 ? 0f : (i - centerOffset) / centerOffset;
             if (cards.Count == 1) normalized = 0f;
@@ -55,21 +66,15 @@ public class HandView : MonoBehaviour
             float zRotation = -normalized * maxRotation;
 
             rect.DOKill();
-            rect.DOAnchorPos(new Vector2(x, y), duration);
-            rect.DOLocalRotate(new Vector3(0f, 0f, zRotation), duration);
-            rect.DOScale(Vector3.one, duration);
 
-            rect.SetSiblingIndex(i);
+            if (!card.IsDragging)
+            {
+                rect.DOAnchorPos(new Vector2(x, y), duration);
+                rect.DOLocalRotate(new Vector3(0f, 0f, zRotation), duration);
+                rect.DOScale(Vector3.one, duration);
+            }
         }
 
         yield return new WaitForSeconds(duration);
     }
-
-    public void RefreshLayoutImmediate()
-    {
-        StopAllCoroutines();
-        StartCoroutine(UpdateCardPositions(0.15f));
-    }
-
-
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 8029377526991851331}
   - component: {fileID: 3124193610564740059}
   - component: {fileID: 2347207728836495160}
+  - component: {fileID: 5328394205293603921}
   m_Layer: 5
   m_Name: CardView
   m_TagString: Untagged
@@ -422,7 +423,7 @@ MonoBehaviour:
   description: {fileID: 1660908083121415313}
   cardCost: {fileID: 6705406461158183625}
   imageSR: {fileID: 3048482971267883303}
-  cardView: {fileID: 6405502660865464845}
+  canvasGroup: {fileID: 5328394205293603921}
 --- !u!210 &3124193610564740059
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -481,6 +482,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.5013117}
   m_EdgeRadius: 0
+--- !u!225 &5328394205293603921
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6405502660865464845}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6818484323294466511
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
