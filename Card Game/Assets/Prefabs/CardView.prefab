@@ -423,7 +423,9 @@ MonoBehaviour:
   description: {fileID: 1660908083121415313}
   cardCost: {fileID: 6705406461158183625}
   imageSR: {fileID: 3048482971267883303}
-  canvasGroup: {fileID: 5328394205293603921}
+  dropArea:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!210 &3124193610564740059
 SortingGroup:
   m_ObjectHideFlags: 0

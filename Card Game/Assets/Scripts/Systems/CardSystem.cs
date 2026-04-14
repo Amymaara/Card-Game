@@ -23,6 +23,7 @@ public class CardSystem : Singleton<CardSystem>
     {
         ActionSystem.AttachPerformer<DrawCardGA>(DrawCardsPerformer);
         ActionSystem.AttachPerformer<DiscardAllCardsGA>(DiscardAllCardsPerformer);
+        ActionSystem.AttachPerformer<PlayCardGA>(PlayCardPerformer);
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
 
@@ -32,6 +33,7 @@ public class CardSystem : Singleton<CardSystem>
     {
         ActionSystem.DetachPerformer<DrawCardGA>();
         ActionSystem.DetachPerformer<DiscardAllCardsGA>();
+        ActionSystem.DetachPerformer<PlayCardGA>();
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
@@ -65,13 +67,27 @@ public class CardSystem : Singleton<CardSystem>
 
     private IEnumerator DiscardAllCardsPerformer(DiscardAllCardsGA discardGA)
     {
-        foreach (var card in hand)
+        List<Card> cardsToDiscard = new(hand);
+
+        foreach (var card in cardsToDiscard)
         {
             discardPile.Add(card);
             CardView cardView = handView.RemoveCard(card);
             yield return DiscardCard(cardView);
         }
+
         hand.Clear();
+    }
+
+    private IEnumerator PlayCardPerformer(PlayCardGA playCardGA)
+    {
+        hand.Remove(playCardGA.Card);
+        discardPile.Add(playCardGA.Card);
+
+        CardView cardView = handView.RemoveCard(playCardGA.Card);
+        yield return DiscardCard(cardView);
+
+        // perform effects
     }
 
     //Reactions
@@ -105,6 +121,12 @@ public class CardSystem : Singleton<CardSystem>
 
     private IEnumerator DiscardCard(CardView cardView)
     {
+        if (cardView == null)
+        {
+            Debug.LogWarning("DiscardCard received a null CardView.");
+            yield break;
+        }
+
         cardView.transform.DOScale(Vector3.zero, 0.15f);
         Tween tween = cardView.transform.DOMove(discardPilePoint.position, 0.15f);
         yield return tween.WaitForCompletion();

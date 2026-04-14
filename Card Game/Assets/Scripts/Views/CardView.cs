@@ -15,28 +15,28 @@ public class CardView : MonoBehaviour,
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text cardCost;
     [SerializeField] private Image imageSR;
-
-    
-    private HandView handView;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     private RectTransform rectTransform;
     private RectTransform parentRect;
+    private HandView handView;
 
-    private Vector2 dragStartPos;
     private Vector2 dragOffset;
-    private Vector3 dragStartRot;
+    private int originalSiblingIndex;
 
     public Card Card { get; private set; }
     public bool IsDragging { get; private set; }
+    public bool WasPlayed { get; set; }
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        handView = GetComponentInParent<HandView>();
         parentRect = transform.parent as RectTransform;
+        handView = GetComponentInParent<HandView>();
+
+        if (canvasGroup == null)
+            canvasGroup = GetComponent<CanvasGroup>();
     }
-
-
 
     public void Setup(Card card)
     {
@@ -52,7 +52,6 @@ public class CardView : MonoBehaviour,
         if (IsDragging) return;
 
         rectTransform.DOKill();
-        transform.SetAsLastSibling();
         rectTransform.DOScale(Vector3.one * 1.1f, 0.12f);
     }
 
@@ -66,21 +65,25 @@ public class CardView : MonoBehaviour,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        WasPlayed = false;
         IsDragging = true;
+        originalSiblingIndex = transform.GetSiblingIndex();
 
-        dragStartPos = rectTransform.anchoredPosition;
-        dragStartRot = rectTransform.localEulerAngles;
+        if (Interactions.Instance != null)
+            Interactions.Instance.StartDragging();
+
+        if (parentRect == null)
+            parentRect = transform.parent as RectTransform;
 
         rectTransform.DOKill();
         transform.SetAsLastSibling();
         rectTransform.localRotation = Quaternion.identity;
         rectTransform.localScale = Vector3.one * 1.1f;
 
-        if (parentRect == null)
-            parentRect = transform.parent as RectTransform;
+        if (canvasGroup != null)
+            canvasGroup.blocksRaycasts = false;
 
-        if (parentRect == null)
-            return;
+        if (parentRect == null) return;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             parentRect,
@@ -95,12 +98,9 @@ public class CardView : MonoBehaviour,
     public void OnDrag(PointerEventData eventData)
     {
         if (!IsDragging) return;
-
         if (parentRect == null)
             parentRect = transform.parent as RectTransform;
-
-        if (parentRect == null)
-            return;
+        if (parentRect == null) return;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             parentRect,
@@ -118,9 +118,20 @@ public class CardView : MonoBehaviour,
 
         IsDragging = false;
 
+        if (Interactions.Instance != null)
+            Interactions.Instance.StopDragging();
+
+        if (canvasGroup != null)
+            canvasGroup.blocksRaycasts = true;
+
         rectTransform.DOKill();
-        rectTransform.anchoredPosition = dragStartPos;
-        rectTransform.localEulerAngles = dragStartRot;
+
+        if (WasPlayed)
+        {
+            return;
+        }
+
+        transform.SetSiblingIndex(originalSiblingIndex);
         rectTransform.localScale = Vector3.one;
 
         if (handView == null)

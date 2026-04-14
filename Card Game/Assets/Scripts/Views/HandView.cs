@@ -41,7 +41,7 @@ public class HandView : MonoBehaviour
     public void RefreshLayoutImmediate()
     {
         StopAllCoroutines();
-        StartCoroutine(UpdateCardPositions(0.15f));
+        StartCoroutine(UpdateCardPositions(layoutDuration));
     }
 
     private IEnumerator UpdateCardPositions(float duration)
@@ -73,6 +73,8 @@ public class HandView : MonoBehaviour
                 rect.DOLocalRotate(new Vector3(0f, 0f, zRotation), duration);
                 rect.DOScale(Vector3.one, duration);
             }
+
+            rect.SetSiblingIndex(i);
         }
 
         yield return new WaitForSeconds(duration);
