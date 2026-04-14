@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Card
@@ -9,6 +10,8 @@ public class Card
 
     public Sprite Image => data.Image;
 
+    public List<Effect> Effects => data.Effects;
+
     public int CardCost { get; private set; }
 
     private readonly CardData data;
@@ -18,7 +21,5 @@ public class Card
         data = cardData;
         CardCost = cardData.cardCost;
 
-    }
-
-    
+    }   
 }

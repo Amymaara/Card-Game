@@ -87,7 +87,15 @@ public class CardSystem : Singleton<CardSystem>
         CardView cardView = handView.RemoveCard(playCardGA.Card);
         yield return DiscardCard(cardView);
 
-        // perform effects
+        Debug.Log("Effects count: " +
+            (playCardGA.Card.Effects == null ? -1 : playCardGA.Card.Effects.Count));
+
+        foreach (var effect in playCardGA.Card.Effects)
+        {
+            Debug.Log("Queueing effect: " + effect);
+            PerformEffectGA performEffectGA = new(effect);
+            ActionSystem.Instance.AddReaction(performEffectGA);
+        }
     }
 
     //Reactions
