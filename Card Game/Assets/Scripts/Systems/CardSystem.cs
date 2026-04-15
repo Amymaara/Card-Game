@@ -13,6 +13,8 @@ public class CardSystem : Singleton<CardSystem>
 
     [SerializeField] private Transform discardPilePoint;
 
+
+
     private readonly List<Card> drawPile = new();
 
     private readonly List<Card> discardPile = new();
@@ -81,6 +83,8 @@ public class CardSystem : Singleton<CardSystem>
 
     private IEnumerator PlayCardPerformer(PlayCardGA playCardGA)
     {
+        SoundManager.Instance.PlaySound(SoundType.CardPlay);
+
         hand.Remove(playCardGA.Card);
         discardPile.Add(playCardGA.Card);
 
@@ -90,6 +94,8 @@ public class CardSystem : Singleton<CardSystem>
         SpentCardCostGA spendCardCostGA = new(playCardGA.Card.CardCost);
         ActionSystem.Instance.AddReaction(spendCardCostGA);
         CurrentCardContext.CurrentType = playCardGA.Card.CardType;
+
+        
 
         Debug.Log("Effects count: " +
             (playCardGA.Card.Effects == null ? -1 : playCardGA.Card.Effects.Count));

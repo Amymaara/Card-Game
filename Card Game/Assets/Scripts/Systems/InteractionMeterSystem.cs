@@ -21,6 +21,11 @@ public class InteractionMeterSystem : MonoBehaviour
 
         Debug.Log("Meter: " + CurrentValue);
 
+        if (amount > 0)
+            SoundManager.Instance.PlaySound(SoundType.Positive);
+        else if (amount < 0)
+            SoundManager.Instance.PlaySound(SoundType.Negative);
+
         CheckWinLose();
     }
 
@@ -28,12 +33,15 @@ public class InteractionMeterSystem : MonoBehaviour
     {
         if (CurrentValue >= maxValue)
         {
+            SoundManager.Instance.PlaySound(SoundType.Win);
             Debug.Log("PLAYER WINS");
             if (winLoseUI != null)
                 winLoseUI.ShowWin();
+
         }
         else if (CurrentValue <= minValue)
         {
+            SoundManager.Instance.PlaySound(SoundType.Lose);
             Debug.Log("PLAYER LOSES");
             if (winLoseUI != null)
                 winLoseUI.ShowLose();
