@@ -12,4 +12,8 @@ public class CardData : ScriptableObject
     [field: SerializeField] public Sprite Image { get; private set; }
 
     [field: SerializeReference, SR] public List<Effect> Effects { get; private set; }
+
+    [field: SerializeField] public CardType CardType { get; private set; }
+    [field: SerializeField] public int BaseValue { get; private set; }
+
 }

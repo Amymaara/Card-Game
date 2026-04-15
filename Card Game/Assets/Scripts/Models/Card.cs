@@ -21,5 +21,7 @@ public class Card
         data = cardData;
         CardCost = cardData.cardCost;
 
-    }   
+    }
+
+    public CardType CardType => data.CardType;
 }

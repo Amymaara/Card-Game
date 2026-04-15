@@ -89,6 +89,7 @@ public class CardSystem : Singleton<CardSystem>
 
         SpentCardCostGA spendCardCostGA = new(playCardGA.Card.CardCost);
         ActionSystem.Instance.AddReaction(spendCardCostGA);
+        CurrentCardContext.CurrentType = playCardGA.Card.CardType;
 
         Debug.Log("Effects count: " +
             (playCardGA.Card.Effects == null ? -1 : playCardGA.Card.Effects.Count));
