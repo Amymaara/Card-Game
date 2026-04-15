@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: testCard
   m_EditorClassIdentifier: 
   <description>k__BackingField: this is a test
-  <cardCost>k__BackingField: 10
+  <cardCost>k__BackingField: 1
   <Image>k__BackingField: {fileID: 8271495017452496064, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
+  <Effects>k__BackingField: []
+  references:
+    version: 2
+    RefIds: []

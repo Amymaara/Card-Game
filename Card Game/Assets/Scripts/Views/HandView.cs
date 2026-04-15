@@ -51,12 +51,21 @@ public class HandView : MonoBehaviour
 
         float centerOffset = (cards.Count - 1) / 2f;
 
+        for (int i = cards.Count - 1; i >= 0; i--)
+        {
+            if (cards[i] == null)
+            {
+                cards.RemoveAt(i);
+            }
+        }
+
         for (int i = 0; i < cards.Count; i++)
         {
             CardView card = cards[i];
             if (card == null) continue;
 
             RectTransform rect = card.GetComponent<RectTransform>();
+            if (rect == null) continue;
 
             float normalized = cards.Count == 1 ? 0f : (i - centerOffset) / centerOffset;
             if (cards.Count == 1) normalized = 0f;

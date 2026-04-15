@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Draw
   m_EditorClassIdentifier: 
   <description>k__BackingField: Draw 2 cards
-  <cardCost>k__BackingField: 5
+  <cardCost>k__BackingField: 2
   <Image>k__BackingField: {fileID: 6237330616902023745, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
   <Effects>k__BackingField:
   - rid: 1424025124314284291

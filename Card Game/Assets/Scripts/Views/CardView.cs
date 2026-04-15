@@ -126,11 +126,13 @@ public class CardView : MonoBehaviour,
 
         rectTransform.DOKill();
 
-        if (WasPlayed)
+        // Successful play only if drop zone accepted it
+        if (WasPlayed && CardCostSystem.Instance.HasEnoughCardCost(Card.CardCost))
         {
             return;
         }
 
+        // Otherwise snap back
         transform.SetSiblingIndex(originalSiblingIndex);
         rectTransform.localScale = Vector3.one;
 

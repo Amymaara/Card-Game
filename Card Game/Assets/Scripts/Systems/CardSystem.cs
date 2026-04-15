@@ -87,6 +87,9 @@ public class CardSystem : Singleton<CardSystem>
         CardView cardView = handView.RemoveCard(playCardGA.Card);
         yield return DiscardCard(cardView);
 
+        SpentCardCostGA spendCardCostGA = new(playCardGA.Card.CardCost);
+        ActionSystem.Instance.AddReaction(spendCardCostGA);
+
         Debug.Log("Effects count: " +
             (playCardGA.Card.Effects == null ? -1 : playCardGA.Card.Effects.Count));
 
@@ -135,9 +138,14 @@ public class CardSystem : Singleton<CardSystem>
             yield break;
         }
 
-        cardView.transform.DOScale(Vector3.zero, 0.15f);
-        Tween tween = cardView.transform.DOMove(discardPilePoint.position, 0.15f);
+        Transform t = cardView.transform;
+        t.DOKill();
+
+        t.DOScale(Vector3.zero, 0.15f);
+        Tween tween = t.DOMove(discardPilePoint.position, 0.15f);
         yield return tween.WaitForCompletion();
+
+        t.DOKill();
         Destroy(cardView.gameObject);
     }
 
