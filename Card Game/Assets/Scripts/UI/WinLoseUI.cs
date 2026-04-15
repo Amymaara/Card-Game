@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinLoseUI : MonoBehaviour
 {
@@ -17,4 +18,23 @@ public class WinLoseUI : MonoBehaviour
         panel.SetActive(true);
         resultText.text = "You escalated the situation.";
     }
+
+    //  Restart button
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // unpause
+        SceneManager.LoadScene("IntroScene");
+    }
+
+    //  Quit button
+    public void QuitGame()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
 }
