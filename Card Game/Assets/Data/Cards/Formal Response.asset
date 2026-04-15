@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <description>k__BackingField: State your opinion formally.
   <cardCost>k__BackingField: 1
-  <Image>k__BackingField: {fileID: -5923643485323027566, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
+  <Image>k__BackingField: {fileID: -8781304306829541999, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
   <Effects>k__BackingField:
   - rid: 1424025131274469473
   <CardType>k__BackingField: 0

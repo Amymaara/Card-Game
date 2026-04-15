@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <description>k__BackingField: Try to calm down, shifts the meter slightly right.
   <cardCost>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 8191831944004141724, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
   <Effects>k__BackingField: []
   <CardType>k__BackingField: 3
   <BaseValue>k__BackingField: 5
