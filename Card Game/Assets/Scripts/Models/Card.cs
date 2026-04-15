@@ -24,4 +24,5 @@ public class Card
     }
 
     public CardType CardType => data.CardType;
+
 }

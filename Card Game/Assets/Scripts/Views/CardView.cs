@@ -15,6 +15,7 @@ public class CardView : MonoBehaviour,
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text cardCost;
     [SerializeField] private Image imageSR;
+    [SerializeField] private TMP_Text cardTypeText;
     [SerializeField] private CanvasGroup canvasGroup;
 
     private RectTransform rectTransform;
@@ -45,6 +46,7 @@ public class CardView : MonoBehaviour,
         description.text = card.Description;
         cardCost.text = card.CardCost.ToString();
         imageSR.sprite = card.Image;
+        cardTypeText.text = card.CardType.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

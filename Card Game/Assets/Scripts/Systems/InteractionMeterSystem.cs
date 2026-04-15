@@ -5,6 +5,7 @@ public class InteractionMeterSystem : MonoBehaviour
 
     [SerializeField] private float minValue = -100f;
     [SerializeField] private float maxValue = 100f;
+    [SerializeField] private WinLoseUI winLoseUI;
 
     public float CurrentValue { get; private set; } = 0f;
 
@@ -23,10 +24,12 @@ public class InteractionMeterSystem : MonoBehaviour
         if (CurrentValue >= maxValue)
         {
             Debug.Log("PLAYER WINS");
+            winLoseUI.ShowWin();
         }
         else if (CurrentValue <= minValue)
         {
             Debug.Log("PLAYER LOSES");
+            winLoseUI.ShowLose();
         }
     }
 
