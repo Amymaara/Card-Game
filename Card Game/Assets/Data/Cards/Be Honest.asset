@@ -10,12 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f85a485d31eb3bc47afc89c3a9053f84, type: 3}
-  m_Name: testCard
+  m_Name: Be Honest
   m_EditorClassIdentifier: 
-  <description>k__BackingField: this is a test
+  <description>k__BackingField: Maintain honesty about the situation
   <cardCost>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 8271495017452496064, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
-  <Effects>k__BackingField: []
+  <Image>k__BackingField: {fileID: 0}
+  <Effects>k__BackingField:
+  - rid: 1424025140186578950
+  <CardType>k__BackingField: 1
+  <BaseValue>k__BackingField: 15
+  cardTypeText: {fileID: 0}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1424025140186578950
+      type: {class: ShiftMeterEffect, ns: , asm: Assembly-CSharp}
+      data:
+        baseAmount: 15

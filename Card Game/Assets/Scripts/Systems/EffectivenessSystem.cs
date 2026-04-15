@@ -16,13 +16,17 @@ public class EffectivenessSystem : MonoBehaviour
             case CardType.Emotional:
                 return 1f; // neutral
 
+            case CardType.Helper:
+                return 1f; 
+
             default:
                 return 1f;
         }
     }
 
-    public string GetFeedback(float multiplier)
+    public string GetFeedback(float multiplier, CardType cardType)
     {
+        if (cardType == CardType.Helper) return "Support";
         if (multiplier > 1f) return "Effective";
         if (multiplier < 1f) return "Ineffective";
         return "Neutral";

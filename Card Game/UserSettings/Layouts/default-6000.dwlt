@@ -142,8 +142,8 @@ MonoBehaviour:
     y: 0
     width: 322
     height: 1293
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -274,8 +274,8 @@ MonoBehaviour:
     y: 0
     width: 693
     height: 777
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 76}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -372,26 +372,26 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2c6dffff52b5fffff6b5ffffecb6ffff60edffff70edffff0ceeffff12f6ffff04fbfffffeba00002abb0000dacb000050cc000078cc0000
+      m_SelectedIDs: e0ba0000
+      m_LastClickedID: 47840
+      m_ExpandedIDs: 04fbffff7cba000090ba000094ba0000e0ba000012bb000056bb0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Win/Lose Panel
-        m_OriginalName: Win/Lose Panel
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -37588
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 6}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1006,9 +1006,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -0.18175912, y: 0.27777782, z: 90}
+    m_Target: {x: -8.287038, y: 4.166667, z: 90}
     speed: 2
-    m_Value: {x: -0.18175912, y: 0.27777782, z: 90}
+    m_Value: {x: -8.287038, y: 4.166667, z: 90}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1058,9 +1058,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.1997404
+    m_Target: 0.06547277
     speed: 2
-    m_Value: 6.1997404
+    m_Value: 0.06547277
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1305,7 +1305,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 52262
+  m_LastSelectedObjectID: -26654
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1349,7 +1349,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 703
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -1438,7 +1438,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Systems
+    - Assets/Scripts/UI
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1448,16 +1448,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Systems
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ammaa\Documents\Card-Game\Card Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fcbf0000
-    m_LastClickedID: 49148
-    m_ExpandedIDs: 00000000c2bd0000c4bd00002ebe000000ca9a3b
+    m_SelectedIDs: 58be0000
+    m_LastClickedID: 48728
+    m_ExpandedIDs: 00000000cebd0000d0bd00003abe000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1486,7 +1486,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 1eb20000
     m_LastClickedID: 45598
-    m_ExpandedIDs: 00000000c2bd0000c4bd0000
+    m_ExpandedIDs: 00000000cebd0000d0bd0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 1eb20000d2ae000044cd000024d400008eb800009ab80000a6b80000b6b8000062d700002cd70000d8b80000ded7000042e6000000df0000b0fc0000aec400004ef1000078140100b6c40000cc0901006c6c01009c470100000000002ed00100ecde0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1532,7 +1532,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 8}
+      m_ClientGUIView: {fileID: 13}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0

@@ -9,15 +9,18 @@ public class InteractionSystem : MonoBehaviour
     [SerializeField] private FeedbackUiText feedbackUI;
     [SerializeField] private NpcTextUI npcTextUI;
 
+
    
     private void OnEnable()
     {
         ActionSystem.AttachPerformer<ShiftMeterGA>(ShiftMeterPerformer);
+        ActionSystem.AttachPerformer<RephraseGA>(RephrasePerformer);
     }
 
     private void OnDisable()
     {
         ActionSystem.DetachPerformer<ShiftMeterGA>();
+        ActionSystem.DetachPerformer<RephraseGA>();
     }
 
     private IEnumerator ShiftMeterPerformer(ShiftMeterGA action)
@@ -25,14 +28,14 @@ public class InteractionSystem : MonoBehaviour
         
         CardType cardType = CurrentCardContext.CurrentType;
 
-        float multiplier = effectivenessSystem.GetMultiplier(cardType);
+        float multiplier = effectivenessSystem.GetMultiplier(CurrentCardContext.CurrentType);
         float finalAmount = action.Amount * multiplier;
 
         meter.ShiftMeter(finalAmount);
 
-        Debug.Log(effectivenessSystem.GetFeedback(multiplier));
+        Debug.Log(effectivenessSystem.GetFeedback(multiplier, action.CardType));
 
-        string feedback = effectivenessSystem.GetFeedback(multiplier);
+        string feedback = effectivenessSystem.GetFeedback(multiplier, CurrentCardContext.CurrentType);
         feedbackUI.ShowFeedback(feedback);
 
         if (feedback == "Effective")
@@ -41,6 +44,30 @@ public class InteractionSystem : MonoBehaviour
             npcTextUI.ShowText("That tone is unacceptable.");
         else
             npcTextUI.ShowText("I see what you’re saying.");
+
+        yield return null;
+    }
+
+    private IEnumerator RephrasePerformer(RephraseGA action)
+    {
+        float last = meter.LastShiftAmount;
+
+        if (last < 0)
+        {
+            // undo the negative effect
+            meter.ShiftMeter(-last);
+
+            feedbackUI.ShowFeedback("Recovered");
+            npcTextUI.ShowText("You quickly correct yourself.");
+        }
+        else
+        {
+            // small bonus if no mistake
+            meter.ShiftMeter(action.FallbackAmount);
+
+            feedbackUI.ShowFeedback("Adjusted");
+            npcTextUI.ShowText("You refine your wording.");
+        }
 
         yield return null;
     }

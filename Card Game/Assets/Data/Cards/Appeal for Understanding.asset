@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f85a485d31eb3bc47afc89c3a9053f84, type: 3}
-  m_Name: Aggressive
+  m_Name: Appeal for Understanding
   m_EditorClassIdentifier: 
-  <description>k__BackingField: AggressiveTest
-  <cardCost>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 751727172215528223, guid: df439f22c08c1164d8f56da02eadc373, type: 3}
+  <description>k__BackingField: Try to get them to understand you.
+  <cardCost>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 0}
   <Effects>k__BackingField:
-  - rid: 1424025131274469469
-  <CardType>k__BackingField: 2
-  <BaseValue>k__BackingField: 20
+  - rid: 1424025140186578949
+  <CardType>k__BackingField: 1
+  <BaseValue>k__BackingField: 25
+  cardTypeText: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 1424025131274469469
+    - rid: 1424025140186578949
       type: {class: ShiftMeterEffect, ns: , asm: Assembly-CSharp}
       data:
-        baseAmount: 20
+        baseAmount: 25
